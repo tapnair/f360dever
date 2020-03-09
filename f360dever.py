@@ -1,6 +1,8 @@
 
 import os
 import sys
+from importlib import reload
+
 import adsk.core
 import traceback
 
@@ -26,12 +28,57 @@ try:
     from .commands.SampleWorkspaceEvents import SampleWorkspaceEvent1
     from .commands.SampleWebRequestEvent import SampleWebRequestOpened
     from .commands.SampleCommandEvents import SampleCommandEvent
+    from .commands import AttributeCommands
 
+    reload(AttributeCommands)
+    reload(apper)
 
 # Create our addin definition object
     my_addin = apper.FusionApp(config.app_name, config.company_name, False)
 
     # Creates a basic Hello World message box on execute
+    my_addin.add_command(
+        'All Attributes',
+        AttributeCommands.AllAttributesCommand,
+        {
+            'cmd_description': 'Display all attributes in a design',
+            'cmd_id': 'all_attributes_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Commands',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
+    my_addin.add_command(
+        'Selection Attributes',
+        AttributeCommands.AttributeSelectionCommand,
+        {
+            'cmd_description': 'Display all attributes associated with some selected object',
+            'cmd_id': 'selection_attributes_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Commands',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
+    my_addin.add_command(
+        'Add Attribute',
+        AttributeCommands.AddAttributeCommand,
+        {
+            'cmd_description': 'Select an object and manually add an attribute',
+            'cmd_id': 'add_attributes_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Commands',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
     my_addin.add_command(
         'Sample Command 1',
         SampleCommand1,
@@ -42,7 +89,7 @@ try:
             'toolbar_panel_id': 'Commands',
             'cmd_resources': 'command_icons',
             'command_visible': True,
-            'command_promoted': True,
+            'command_promoted': False,
         }
     )
 

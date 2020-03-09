@@ -1,13 +1,11 @@
-
-
 {
-	"autodeskProduct":	"Fusion360",
-	"type":	"addin",
-	"id":	"replace_me",
-	"author":	"Patrick Rainsberry",
-	"description": "Development Utilities for Fusion 360",
-	"version":	"0.1.0",
-	"runOnStartup":	false,
-	"supportedOS":	"windows|mac",
-	"editEnabled":	true
+    "autodeskProduct": "Fusion360",
+    "type": "addin",
+    "id": "1c861fa8-8908-41ca-868e-264b129364f4",
+    "author": "Patrick Rainsberry",
+    "description": "Development Utilities for Fusion 360",
+    "version": "0.1.0",
+    "runOnStartup": false,
+    "supportedOS": "windows|mac",
+    "editEnabled": true
 }
