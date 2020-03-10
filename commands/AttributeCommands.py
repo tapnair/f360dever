@@ -14,7 +14,7 @@ from apper import AppObjects
 
 reload(apper)
 
-ao = AppObjects()
+# ao = AppObjects()
 # ao.ui.messageBox(apper.__file__)
 
 
