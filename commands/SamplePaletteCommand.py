@@ -8,7 +8,7 @@ import apper
 
 
 # Class for a Fusion 360 Palette Command
-class SamplePaletteShowCommand(apper.PaletteCommandBase):
+class CommandStreamPaletteShow(apper.PaletteCommandBase):
 
     # Run when user executes command in UI, useful for handling extra tasks on palette like docking
     def on_palette_execute(self, palette: adsk.core.Palette):

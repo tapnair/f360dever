@@ -6,6 +6,7 @@ from importlib import reload
 import adsk.core
 import traceback
 
+
 app_path = os.path.dirname(__file__)
 
 sys.path.insert(0, app_path)
@@ -22,16 +23,20 @@ try:
     from .commands.SampleCommand2 import SampleCommand2
 
     # Palette Command Base samples
-    from .commands.SamplePaletteCommand import SamplePaletteSendCommand, SamplePaletteShowCommand
+    from .commands.SamplePaletteCommand import SamplePaletteSendCommand, CommandStreamPaletteShow
 
     # Various Application event samples
     from .commands.SampleCustomEvent import SampleCustomEvent1
     from .commands.SampleDocumentEvents import SampleDocumentEvent1, SampleDocumentEvent2
     from .commands.SampleWorkspaceEvents import SampleWorkspaceEvent1
     from .commands.SampleWebRequestEvent import SampleWebRequestOpened
-    from .commands.SampleCommandEvents import SampleCommandEvent
+    from .commands.SampleCommandEvents import CommandStreamEvent
     from .commands import AttributeCommands
     from .commands import AssemblyContextCommands
+    from commands import NewNumbers
+    from commands import CleanUpDocuments
+    from commands import tab_panels_dump
+    from commands import Dump_UI
 
     reload(AttributeCommands)
     reload(apper)
@@ -96,19 +101,20 @@ try:
         }
     )
 
-    my_addin.add_command(
-        'Component Joint Info',
-        AssemblyContextCommands.AssemblyJointCommand,
-        {
-            'cmd_description': 'Select a component and see information about its joints',
-            'cmd_id': 'component_joint_info_cmd',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Assembly',
-            'cmd_resources': 'command_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # TODO something, wrong, think need to put occurrence in top level context or joint's context to get proper result.
+    # my_addin.add_command(
+    #     'Component Joint Info',
+    #     AssemblyContextCommands.AssemblyJointCommand,
+    #     {
+    #         'cmd_description': 'Select a component and see information about its joints',
+    #         'cmd_id': 'component_joint_info_cmd',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Assembly',
+    #         'cmd_resources': 'command_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
     my_addin.add_command(
         'Assembly Context Info',
@@ -121,6 +127,62 @@ try:
             'cmd_resources': 'command_icons',
             'command_visible': True,
             'command_promoted': True,
+        }
+    )
+
+    my_addin.add_command(
+        'Cleanup this Document',
+        NewNumbers.NewNumbers,
+        {
+            'cmd_description': 'Sets Description and assigns a sequence of part numbers starting with a random number',
+            'cmd_id': 'clean_this_document_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'MetaData',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
+    my_addin.add_command(
+        'Cleanup Project',
+        CleanUpDocuments.CleanUpDocuments,
+        {
+            'cmd_description': 'Updates metadata for all files in active project',
+            'cmd_id': 'clean_all_documents_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'MetaData',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
+        }
+    )
+
+    my_addin.add_command(
+        'Write UI',
+        Dump_UI.DumpUICommand,
+        {
+            'cmd_description': 'Write UI definitions to file',
+            'cmd_id': 'dump_ui_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'UI',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
+        }
+    )
+
+    my_addin.add_command(
+        'Write Panels',
+        tab_panels_dump.DumpWorkspacePanels,
+        {
+            'cmd_description': 'Write just workspace and panel definitions to file',
+            'cmd_id': 'dump_workspace_panels_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'UI',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
         }
     )
 
@@ -159,19 +221,19 @@ try:
 
     # Create an html palette to as an alternative UI
     my_addin.add_command(
-        'Sample Palette Command - Show',
-        SamplePaletteShowCommand,
+        'Show Commands',
+        CommandStreamPaletteShow,
         {
-            'cmd_description': 'Shows the Fusion 360 Demo Palette',
-            'cmd_id': 'sample_palette_show',
+            'cmd_description': 'Show details about commands being executed in the UI',
+            'cmd_id': config.command_stream_id,
             'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Palette',
+            'toolbar_panel_id': 'UI',
             'cmd_resources': 'palette_icons',
             'command_visible': True,
             'command_promoted': True,
             'palette_id': 'sample_palette',
-            'palette_name': 'Sample Fusion 360 HTML Palette',
-            'palette_html_file_url': 'palette_html/f360dever.html',
+            'palette_name': 'f360dever Command Stream',
+            'palette_html_file_url': 'palette_html/command_stream.html',
             'palette_is_visible': True,
             'palette_show_close_button': True,
             'palette_is_resizable': True,
@@ -180,21 +242,21 @@ try:
         }
     )
 
-    # Send data from Fusion 360 to the palette
-    my_addin.add_command(
-        'Send Info to Palette',
-        SamplePaletteSendCommand,
-        {
-            'cmd_description': 'Send data from a regular Fusion 360 command to a palette',
-            'cmd_id': 'sample_palette_send',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Palette',
-            'cmd_resources': 'palette_icons',
-            'command_visible': True,
-            'command_promoted': False,
-            'palette_id': 'sample_palette',
-        }
-    )
+    # # Send data from Fusion 360 to the palette
+    # my_addin.add_command(
+    #     'Send Info to Palette',
+    #     SamplePaletteSendCommand,
+    #     {
+    #         'cmd_description': 'Send data from a regular Fusion 360 command to a palette',
+    #         'cmd_id': 'sample_palette_send',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Palette',
+    #         'cmd_resources': 'palette_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #         'palette_id': 'sample_palette',
+    #     }
+    # )
 
     app = adsk.core.Application.cast(adsk.core.Application.get())
     ui = app.userInterface
@@ -209,7 +271,7 @@ try:
 
     # my_addin.add_web_request_event("f360dever_web_request_event", app.openedFromURL, SampleWebRequestOpened)
 
-    # my_addin.add_command_event("f360dever_command_event", app.userInterface.commandStarting, SampleCommandEvent)
+    my_addin.add_command_event("f360dever_command_event", app.userInterface.commandStarting, CommandStreamEvent)
 
 except:
     app = adsk.core.Application.get()

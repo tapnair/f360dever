@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id='title'>f360dever Command Stream</h1>
+<h4 id='section_title'>This panel streams Fusion commands</h4>
+<p>Closing this panel cuts command stream.</p>
+<div>
+    <p id='status'>Waiting...</p>
+    <ul style="list-style-type:circle" id='commands'>
+    </ul>
+</div>
+<div id="campaign-content"></div>
+</body>
+</html>
+
+<script>
+    let lastCommands = [];
+    window.fusionJavaScriptHandler = {
+        handle: function (action, raw_data) {
+            try {
+                let data = JSON.parse(raw_data);
+                if (action === 'debugger') {
+                    debugger;
+                } else if (action === 'command') {
+                    lastCommands.unshift(data.cmd_id);
+                    lastCommands = lastCommands.slice(0, 10);
+                    document.getElementById('status').innerHTML = "Reported commands:";
+                    document.getElementById('commands').innerHTML = lastCommands.map((item) => '<li>' + item + '</li>').join('');
+                } else {
+                    return 'Unexpected command type: ' + action;
+                }
+            } catch (e) {
+                alert('exception caught with command: ' + action + ', data: ' + data + ', exception: ' + e);
+            }
+            return 'OK';
+        };
+
+</script>

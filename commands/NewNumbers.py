@@ -1,3 +1,5 @@
+from importlib import reload
+
 import adsk.core
 import adsk.fusion
 import traceback
@@ -5,8 +7,11 @@ from random import randint
 
 import apper
 from apper import AppObjects
+import config
 
-new_number = randint(1000000, 9999900)
+reload(config)
+
+new_number = randint(config.part_number_random_seed_min, config.part_number_random_seed_max)
 
 
 def make_numbers_one(component: adsk.fusion.Component, changed: bool) -> bool:
@@ -33,10 +38,10 @@ def make_numbers_one(component: adsk.fusion.Component, changed: bool) -> bool:
     return changed
 
 
-def make_numbers():
+def make_numbers() -> bool:
     """
 
-    Returns:
+    Returns: True if any component in the design had it's metadata updated
 
     """
     changed = False
@@ -58,3 +63,4 @@ class NewNumbers(apper.Fusion360CommandBase):
 
     def on_execute(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, args, input_values):
         make_numbers()
+
