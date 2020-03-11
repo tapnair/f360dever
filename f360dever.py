@@ -11,6 +11,8 @@ app_path = os.path.dirname(__file__)
 sys.path.insert(0, app_path)
 sys.path.insert(0, os.path.join(app_path, 'apper'))
 
+# TODO add command stream with parent control info (panel, tab, workspace, etc)
+
 try:
     import config
     import apper
@@ -29,6 +31,7 @@ try:
     from .commands.SampleWebRequestEvent import SampleWebRequestOpened
     from .commands.SampleCommandEvents import SampleCommandEvent
     from .commands import AttributeCommands
+    from .commands import AssemblyContextCommands
 
     reload(AttributeCommands)
     reload(apper)
@@ -78,6 +81,52 @@ try:
             'command_promoted': True,
         }
     )
+
+    my_addin.add_command(
+        'Single Joint Info',
+        AssemblyContextCommands.JointInfoCommand,
+        {
+            'cmd_description': 'Select a joint and see its information',
+            'cmd_id': 'joint_info_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Assembly',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
+        }
+    )
+
+    my_addin.add_command(
+        'Component Joint Info',
+        AssemblyContextCommands.AssemblyJointCommand,
+        {
+            'cmd_description': 'Select a component and see information about its joints',
+            'cmd_id': 'component_joint_info_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Assembly',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
+        }
+    )
+
+    my_addin.add_command(
+        'Assembly Context Info',
+        AssemblyContextCommands.AssemblyContextCommand,
+        {
+            'cmd_description': 'Select an occurrence (component) and see information about its assembly context',
+            'cmd_id': 'assembly_context_info_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Assembly',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
+
+
+
 
     my_addin.add_command(
         'Sample Command 1',

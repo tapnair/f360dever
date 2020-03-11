@@ -16,6 +16,7 @@ from apper import AppObjects
 
 reload(apper)
 
+
 def display_joint_info(joint: adsk.fusion.Joint) -> list:
     """Basic Joint details
 
@@ -118,7 +119,7 @@ def show_asm_context(occurrence: adsk.fusion.Occurrence, prefix: str, msg_list) 
 
     if occurrence.assemblyContext is not None:
         prefix = "ASM Context -> " + prefix
-        show_asm_context(occurrence.assemblyContext, prefix)
+        show_asm_context(occurrence.assemblyContext, prefix, msg_list)
 
     return msg_list
 
@@ -130,12 +131,12 @@ class AssemblyContextCommand(apper.Fusion360CommandBase):
         text_box_input: adsk.core.TextBoxCommandInput = inputs.itemById('text_box_input_id')
 
         if len(all_selections) > 0:
-
+            msg_list = []
             occurrence: adsk.fusion.Occurrence = all_selections[0]
             prefix = "Selected Item (Proxy): "
-            show_asm_context(occurrence, prefix)
+            show_asm_context(occurrence, prefix, msg_list)
 
-            msg_list = show_occurrence_joints(occurrence, "Proxy")
+            msg_list.extend(show_occurrence_joints(occurrence, "Proxy"))
 
             msg = ''.join(msg_list)
 
@@ -167,18 +168,20 @@ class AssemblyJointCommand(apper.Fusion360CommandBase):
         text_box_input: adsk.core.TextBoxCommandInput = inputs.itemById('text_box_input_id')
 
         if len(all_selections) > 0:
-
+            msg_list_0 = []
             occurrence: adsk.fusion.Occurrence = all_selections[0]
             prefix = "Selected Item (Proxy): "
-            show_asm_context(occurrence, prefix)
+            show_asm_context(occurrence, prefix, msg_list_0)
 
             msg_list_1 = show_occurrence_joints(occurrence, "Proxy")
-            msg_list_2 = show_occurrence_joints(occurrence.nativeObject, "Native Object")
+            # msg_list_2 = show_occurrence_joints(occurrence.nativeObject, "Native Object")
 
-            msg = ''.join(msg_list_1)
-            msg = ''.join(msg_list_2)
+            msg = ''.join(msg_list_0)
+            msg.join(msg_list_1)
+            # msg.join(msg_list_2)
 
-            text_box_input.numRows = len(msg_list_1) + len(msg_list_2) + 2
+            # text_box_input.numRows = len(msg_list_1) + len(msg_list_2) + 2
+            text_box_input.numRows = len(msg_list_1) + 2
             text_box_input.formattedText = msg
 
         else:
