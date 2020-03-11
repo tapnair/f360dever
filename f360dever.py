@@ -188,36 +188,36 @@ try:
 
 
 
-
-
-    my_addin.add_command(
-        'Sample Command 1',
-        SampleCommand1,
-        {
-            'cmd_description': 'Hello World!',
-            'cmd_id': 'sample_cmd_1',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Commands',
-            'cmd_resources': 'command_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
-
-    # General command showing inputs and user interaction
-    my_addin.add_command(
-        'Sample Command 2',
-        SampleCommand2,
-        {
-            'cmd_description': 'A simple example of a Fusion 360 Command with various inputs',
-            'cmd_id': 'sample_cmd_2',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Commands',
-            'cmd_resources': 'command_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    #
+    #
+    # my_addin.add_command(
+    #     'Sample Command 1',
+    #     SampleCommand1,
+    #     {
+    #         'cmd_description': 'Hello World!',
+    #         'cmd_id': 'sample_cmd_1',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Commands',
+    #         'cmd_resources': 'command_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
+    #
+    # # General command showing inputs and user interaction
+    # my_addin.add_command(
+    #     'Sample Command 2',
+    #     SampleCommand2,
+    #     {
+    #         'cmd_description': 'A simple example of a Fusion 360 Command with various inputs',
+    #         'cmd_id': 'sample_cmd_2',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Commands',
+    #         'cmd_resources': 'command_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
     # Create an html palette to as an alternative UI
     my_addin.add_command(
@@ -225,15 +225,17 @@ try:
         CommandStreamPaletteShow,
         {
             'cmd_description': 'Show details about commands being executed in the UI',
-            'cmd_id': config.command_stream_id,
+            'cmd_id': 'command_stream_id',
             'workspace': 'FusionSolidEnvironment',
             'toolbar_panel_id': 'UI',
             'cmd_resources': 'palette_icons',
             'command_visible': True,
             'command_promoted': True,
-            'palette_id': 'sample_palette',
+            'palette_id': config.command_stream_palette_id,
             'palette_name': 'f360dever Command Stream',
-            'palette_html_file_url': 'palette_html/command_stream.html',
+            # 'palette_html_file_url': 'palette_html/command_stream.html',
+            'palette_html_file_url':
+                '/Users/rainsbp/Dropbox/autodesk/apps-dev/f360dever/commands/palette_html/command_stream.html',
             'palette_is_visible': True,
             'palette_show_close_button': True,
             'palette_is_resizable': True,

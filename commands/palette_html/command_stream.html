@@ -18,6 +18,7 @@
     window.fusionJavaScriptHandler = {
         handle: function (action, raw_data) {
             try {
+                console.log("received");
                 let data = JSON.parse(raw_data);
                 if (action === 'debugger') {
                     debugger;
@@ -33,6 +34,7 @@
                 alert('exception caught with command: ' + action + ', data: ' + data + ', exception: ' + e);
             }
             return 'OK';
-        };
+        }
+    };
 
 </script>

@@ -4,6 +4,7 @@ import apper
 import json
 import config
 
+
 def palette_push(cmd_id, palette_id):
     ao = apper.AppObjects()
     palette = ao.ui.palettes.itemById(palette_id)
@@ -20,4 +21,4 @@ def palette_push(cmd_id, palette_id):
 class CommandStreamEvent(apper.Fusion360CommandEvent):
 
     def command_event_received(self, event_args, command_id, command_definition):
-        palette_push(event_args.commandId, config.command_stream_id)
+        palette_push(command_id, config.command_stream_palette_id)
