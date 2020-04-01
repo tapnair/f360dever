@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1 id='title'>f360dever Command Stream</h1>
-<h4 id='section_title'>This panel streams Fusion commands</h4>
-<p>Closing this panel cuts command stream.</p>
-<div>
-    <p id='status'>Waiting...</p>
-    <ul style="list-style-type:circle" id='commands'>
-    </ul>
-</div>
-<div id="campaign-content"></div>
-</body>
+    <body>
+        <h1 id='title'>f360dever Command Stream</h1>
+        <h4 id='section_title'>This panel streams Fusion commands</h4>
+        <p>Closing this panel cuts command stream.</p>
+        <div>
+            <p id='status'>Waiting...</p>
+            <ul style="list-style-type:circle" id='commands'>
+            </ul>
+        </div>
+        <h3>Active Toolbar Summary</h3>
+        <div id="toolbar-tab"></div>
+    </body>
 </html>
 
 <script>
@@ -26,7 +27,10 @@
                     lastCommands.unshift(data.cmd_id);
                     lastCommands = lastCommands.slice(0, 10);
                     document.getElementById('status').innerHTML = "Reported commands:";
-                    document.getElementById('commands').innerHTML = lastCommands.map((item) => '<li>' + item + '</li>').join('');
+                    document.getElementById('toolbar-tab').innerHTML = data.toolbar_tab_msg;
+                    document.getElementById('commands').innerHTML = lastCommands.map(
+                        (item) => '<li>' + item + '</li>'
+                    ).join('');
                 } else {
                     return 'Unexpected command type: ' + action;
                 }
