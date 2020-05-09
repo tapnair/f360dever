@@ -25,7 +25,7 @@
                     debugger;
                 } else if (action === 'command') {
                     lastCommands.unshift(data.cmd_id);
-                    lastCommands = lastCommands.slice(0, 10);
+                    lastCommands = lastCommands.slice(0, 20);
                     document.getElementById('status').innerHTML = "Reported commands:";
                     document.getElementById('toolbar-tab').innerHTML = data.toolbar_tab_msg;
                     document.getElementById('commands').innerHTML = lastCommands.map(

@@ -5,7 +5,7 @@ import json
 import config
 
 
-def palette_push(cmd_id, palette_id):
+def palette_push(cmd_id, palette_id, event_args):
     ao = apper.AppObjects()
     palette = ao.ui.palettes.itemById(palette_id)
     app = adsk.core.Application.get()
@@ -14,7 +14,8 @@ def palette_push(cmd_id, palette_id):
 
     action_data = {'cmd_id': cmd_id,
                    'version': app.version,
-                   'toolbar_tab_msg': toolbar_tab_msg
+                   'toolbar_tab_msg': toolbar_tab_msg,
+
                    }
     # Send message to the HTML Page
     if palette:
@@ -83,4 +84,4 @@ def make_panel_message_list():
 class CommandStreamEvent(apper.Fusion360CommandEvent):
 
     def command_event_received(self, event_args, command_id, command_definition):
-        palette_push(command_id, config.command_stream_palette_id)
+        palette_push(command_id, config.command_stream_palette_id, event_args)

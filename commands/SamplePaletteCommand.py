@@ -22,12 +22,12 @@ class CommandStreamPaletteShow(apper.PaletteCommandBase):
 
         # Parse incoming message and build message for Fusion message box
         data = json.loads(html_args.data)
-        msg = "An event has been fired from the html to Fusion with the following data:\n"
-        msg += '    Command: {}\n    arg1: {}\n    arg2: {}'.format(html_args.action, data['arg1'], data['arg2'])
+        # msg = "An event has been fired from the html to Fusion with the following data:\n"
+        # msg += '    Command: {}\n    arg1: {}\n    arg2: {}'.format(html_args.action, data['arg1'], data['arg2'])
 
-        # Display Message
-        ao = apper.AppObjects()
-        ao.ui.messageBox(msg)
+        # # Display Message
+        # ao = apper.AppObjects()
+        # ao.ui.messageBox(msg)
 
     # Handle any extra cleanup when user closes palette here
     def on_palette_close(self):

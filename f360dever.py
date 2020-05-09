@@ -52,7 +52,7 @@ try:
             'cmd_description': 'Display all attributes in a design',
             'cmd_id': 'all_attributes_cmd',
             'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Commands',
+            'toolbar_panel_id': 'Attributes',
             'cmd_resources': 'command_icons',
             'command_visible': True,
             'command_promoted': True,
@@ -66,7 +66,7 @@ try:
             'cmd_description': 'Display all attributes associated with some selected object',
             'cmd_id': 'selection_attributes_cmd',
             'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Commands',
+            'toolbar_panel_id': 'Attributes',
             'cmd_resources': 'command_icons',
             'command_visible': True,
             'command_promoted': True,
@@ -80,7 +80,7 @@ try:
             'cmd_description': 'Select an object and manually add an attribute',
             'cmd_id': 'add_attributes_cmd',
             'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Commands',
+            'toolbar_panel_id': 'Attributes',
             'cmd_resources': 'command_icons',
             'command_visible': True,
             'command_promoted': True,
@@ -131,7 +131,7 @@ try:
     )
 
     my_addin.add_command(
-        'Cleanup this Document',
+        'Fake MetaData Document',
         NewNumbers.NewNumbers,
         {
             'cmd_description': 'Sets Description and assigns a sequence of part numbers starting with a random number',
@@ -144,19 +144,19 @@ try:
         }
     )
 
-    my_addin.add_command(
-        'Cleanup Project',
-        CleanUpDocuments.CleanUpDocuments,
-        {
-            'cmd_description': 'Updates metadata for all files in active project',
-            'cmd_id': 'clean_all_documents_cmd',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'MetaData',
-            'cmd_resources': 'command_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # my_addin.add_command(
+    #     'Cleanup Project',
+    #     CleanUpDocuments.CleanUpDocuments,
+    #     {
+    #         'cmd_description': 'Updates metadata for all files in active project',
+    #         'cmd_id': 'clean_all_documents_cmd',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'MetaData',
+    #         'cmd_resources': 'command_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
     my_addin.add_command(
         'Write UI',
