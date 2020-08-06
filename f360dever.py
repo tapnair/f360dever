@@ -1,16 +1,8 @@
-
-import os
-import sys
-from importlib import reload
-
 import adsk.core
 import traceback
 
-
-app_path = os.path.dirname(__file__)
-
-sys.path.insert(0, app_path)
-sys.path.insert(0, os.path.join(app_path, 'apper'))
+from.startup import setup_app, cleanup_app, get_app_path
+setup_app(__file__)
 
 # TODO add command stream with parent control info (panel, tab, workspace, etc)
 
@@ -31,18 +23,17 @@ try:
     from .commands.SampleWorkspaceEvents import SampleWorkspaceEvent1
     from .commands.SampleWebRequestEvent import SampleWebRequestOpened
     from .commands.SampleCommandEvents import CommandStreamEvent
+    from .commands.SampleActiveSelectionEvents import SampleActiveSelectionEvent1
     from .commands import AttributeCommands
     from .commands import AssemblyContextCommands
-    from commands import NewNumbers
-    from commands import CleanUpDocuments
-    from commands import tab_panels_dump
-    from commands import Dump_UI
-
-    reload(AttributeCommands)
-    reload(apper)
+    from .commands import NewNumbers
+    from .commands import CleanUpDocuments
+    from .commands import tab_panels_dump
+    from .commands import Dump_UI
 
 # Create our addin definition object
     my_addin = apper.FusionApp(config.app_name, config.company_name, False)
+    my_addin.root_path = get_app_path(__file__)
 
     # Creates a basic Hello World message box on execute
     my_addin.add_command(
@@ -233,9 +224,8 @@ try:
             'command_promoted': True,
             'palette_id': config.command_stream_palette_id,
             'palette_name': 'f360dever Command Stream',
-            # 'palette_html_file_url': 'palette_html/command_stream.html',
-            'palette_html_file_url':
-                '/Users/rainsbp/Dropbox/autodesk/apps-dev/f360dever/commands/palette_html/command_stream.html',
+            'palette_html_file_url': 'commands/palette_html/command_stream.html',
+            'palette_use_new_browser': True,
             'palette_is_visible': True,
             'palette_show_close_button': True,
             'palette_is_resizable': True,
@@ -273,7 +263,9 @@ try:
 
     # my_addin.add_web_request_event("f360dever_web_request_event", app.openedFromURL, SampleWebRequestOpened)
 
-    my_addin.add_command_event("f360dever_command_event", app.userInterface.commandStarting, CommandStreamEvent)
+    my_addin.add_command_event("f360dever_command_event", ui.commandStarting, CommandStreamEvent)
+
+    my_addin.add_command_event("f360dever_selection_event", ui.activeSelectionChanged, SampleActiveSelectionEvent1)
 
 except:
     app = adsk.core.Application.get()
@@ -291,5 +283,4 @@ def run(context):
 
 def stop(context):
     my_addin.stop_app()
-    sys.path.pop(0)
-    sys.path.pop(0)
+    cleanup_app(__file__)

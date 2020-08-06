@@ -10,6 +10,7 @@ def palette_push(cmd_id, palette_id, event_args):
     palette = ao.ui.palettes.itemById(palette_id)
     app = adsk.core.Application.get()
     cmd = ao.ui.commandDefinitions.itemById(cmd_id)
+    # toolbar_tab_msg = make_tab_message_list()
     toolbar_tab_msg = make_tab_message_list()
 
     action_data = {'cmd_id': cmd_id,
@@ -28,8 +29,12 @@ def make_tab_message():
     ao = apper.AppObjects()
 
     tab: adsk.core.ToolbarTab
-    for tab in ao.ui.activeWorkspace.toolbarTabs:
+    try:
+        active_workspace = ao.ui.activeWorkspace
+    except RuntimeError:
+        return
 
+    for tab in active_workspace.toolbarTabs:
         if tab.isActive:
             msg += "Toolbar Tab: {}\n".format(tab.id)
             toolbar_panel: adsk.core.ToolbarPanel
@@ -38,7 +43,6 @@ def make_tab_message():
                 toolbar_control: adsk.core.ToolbarControl
                 for toolbar_control in toolbar_panel.controls:
                     msg += "     - {}\n".format(toolbar_control.id)
-
     return msg
 
 
@@ -48,18 +52,22 @@ def make_tab_message_list():
     ao = apper.AppObjects()
 
     tab: adsk.core.ToolbarTab
-    for tab in ao.ui.activeWorkspace.toolbarTabs:
+    try:
+        active_workspace = ao.ui.activeWorkspace
+    except RuntimeError:
+        return
 
-        if tab.isActive:
-            msg += "Toolbar Tab: {}<OL>".format(tab.id)
-            toolbar_panel: adsk.core.ToolbarPanel
-            for toolbar_panel in tab.toolbarPanels:
-                msg += "<LI>Panel: {}<UL>\n".format(toolbar_panel.id)
-                toolbar_control: adsk.core.ToolbarControl
-                for toolbar_control in toolbar_panel.controls:
-                    msg += "<LI>{}</LI>".format(toolbar_control.id)
-                msg += "</UL></LI>"
-            msg += "</OL>"
+    for tab in active_workspace.toolbarTabs:
+        # if tab.isActive:
+        msg += "Toolbar Tab: {}<OL>".format(tab.id)
+        toolbar_panel: adsk.core.ToolbarPanel
+        for toolbar_panel in tab.toolbarPanels:
+            msg += "<LI>Panel: {}<UL>\n".format(toolbar_panel.id)
+            toolbar_control: adsk.core.ToolbarControl
+            for toolbar_control in toolbar_panel.controls:
+                msg += "<LI>{}</LI>".format(toolbar_control.id)
+            msg += "</UL></LI>"
+        msg += "</OL>"
     return msg
 
 
