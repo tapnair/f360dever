@@ -10,26 +10,32 @@ try:
     import config
     import apper
 
-    # Basic Fusion 360 Command Base samples
-    from .commands.SampleCommand1 import SampleCommand1
-    from .commands.SampleCommand2 import SampleCommand2
+    # For UI Command and Selection Stream
+    from .commands.CommandStreamEvents import CommandStreamEvent, SelectionStreamEvent
 
-    # Palette Command Base samples
-    from .commands.SamplePaletteCommand import SamplePaletteSendCommand, CommandStreamPaletteShow
-
-    # Various Application event samples
-    from .commands.SampleCustomEvent import SampleCustomEvent1
-    from .commands.SampleDocumentEvents import SampleDocumentEvent1, SampleDocumentEvent2
-    from .commands.SampleWorkspaceEvents import SampleWorkspaceEvent1
-    from .commands.SampleWebRequestEvent import SampleWebRequestOpened
-    from .commands.SampleCommandEvents import CommandStreamEvent
-    from .commands.SampleActiveSelectionEvents import SampleActiveSelectionEvent1
+    # f360 Dever Commands
+    from .commands.SamplePaletteCommand import CommandStreamPaletteShow
     from .commands import AttributeCommands
     from .commands import AssemblyContextCommands
     from .commands import NewNumbers
     from .commands import CleanUpDocuments
     from .commands import tab_panels_dump
     from .commands import Dump_UI
+
+    # ************Samples**************
+    # Basic Fusion 360 Command Base samples
+    from .commands.SampleCommand1 import SampleCommand1
+    from .commands.SampleCommand2 import SampleCommand2
+
+    # Palette Command Base samples
+    from .commands.SamplePaletteCommand import SamplePaletteSendCommand
+
+    # Various Application event samples
+    from .commands.SampleCustomEvent import SampleCustomEvent1
+    from .commands.SampleDocumentEvents import SampleDocumentEvent1, SampleDocumentEvent2
+    from .commands.SampleWorkspaceEvents import SampleWorkspaceEvent1
+    from .commands.SampleWebRequestEvent import SampleWebRequestOpened
+    from .commands.SampleActiveSelectionEvents import SampleActiveSelectionEvent1
 
 # Create our addin definition object
     my_addin = apper.FusionApp(config.app_name, config.company_name, False)
@@ -265,7 +271,7 @@ try:
 
     my_addin.add_command_event("f360dever_command_event", ui.commandStarting, CommandStreamEvent)
 
-    my_addin.add_command_event("f360dever_selection_event", ui.activeSelectionChanged, SampleActiveSelectionEvent1)
+    my_addin.add_command_event("f360dever_selection_event", ui.activeSelectionChanged, SelectionStreamEvent)
 
 except:
     app = adsk.core.Application.get()

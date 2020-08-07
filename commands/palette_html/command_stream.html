@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1 id='title'>f360dever Command Stream</h1>
-        <h4 id='section_title'>This panel streams Fusion commands</h4>
-        <p>Closing this panel cuts command stream.</p>
-        <div>
-            <p id='status'>Waiting...</p>
-            <ul style="list-style-type:circle" id='commands'>
+<body>
+<div>
+    <h1 id='title'>UI Information f360 Dever</h1>
+    <div>
+        <h2>Current Selections</h2>
+        <div style="padding-left: 10px;">
+            <ul style="list-style-type:circle" id='selections'>
+                <li>Nothing Selected</li>
             </ul>
         </div>
-        <h3>Active Toolbar Summary</h3>
-        <div id="toolbar-tab"></div>
-    </body>
+    </div>
+    <div>
+        <h2>Command Stream</h2>
+        <div style="padding-left: 10px;">
+            <ul style="list-style-type:circle" id='commands'>
+                <li>Select a command</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <h2>Workspace Summary</h2>
+        <div style='padding-left: 35px;'>
+            <div id="ui-summary">
+                <p>Select a command or entity to refresh workspace data</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
 
 <script>
@@ -26,9 +42,12 @@
                 } else if (action === 'command') {
                     lastCommands.unshift(data.cmd_id);
                     lastCommands = lastCommands.slice(0, 20);
-                    document.getElementById('status').innerHTML = "Reported commands:";
-                    document.getElementById('toolbar-tab').innerHTML = data.toolbar_tab_msg;
+                    document.getElementById('ui-summary').innerHTML = data.ui_message;
                     document.getElementById('commands').innerHTML = lastCommands.map(
+                        (item) => '<li>' + item + '</li>'
+                    ).join('');
+                } else if (action === 'selection') {
+                    document.getElementById('selections').innerHTML = data.selection_list.map(
                         (item) => '<li>' + item + '</li>'
                     ).join('');
                 } else {
