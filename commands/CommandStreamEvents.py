@@ -42,7 +42,6 @@ def make_ui_message():
     msg = ""
     ao = apper.AppObjects()
 
-    tab: adsk.core.ToolbarTab
     try:
         active_workspace = ao.ui.activeWorkspace
     except RuntimeError:
@@ -56,6 +55,7 @@ def make_ui_message():
     msg += "<h3>Visible Toolbar Tabs</h3>"
     msg += "<div style='padding-left: 25px;'>"
 
+    tab: adsk.core.ToolbarTab
     for tab in active_workspace.toolbarTabs:
         if tab.isVisible:
 

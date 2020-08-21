@@ -69,11 +69,11 @@ class DumpUICommand(apper.Fusion360CommandBase):
                 except:
                     msg = '      failed' + '\n'
 
-            output = open(filename, 'w')
-            output.writelines(result)
-            output.close()
+                output = open(filename, 'w')
+                output.writelines(result)
+                output.close()
 
-            ui.messageBox('File written to "' + filename + '"')
+                ui.messageBox('File written to "' + filename + '"')
         except:
             if ui:
                 ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
