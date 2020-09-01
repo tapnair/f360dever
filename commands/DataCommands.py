@@ -17,7 +17,7 @@ class DataInfoCommand(apper.Fusion360CommandBase):
         self.encoded_lineage_urn = ''
         self.encoded_version_urn = ''
 
-        self.hub_id = "autodesk3008"
+        self.hub_id = "YOUR_HUB_ID"
 
     def on_execute(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, args, input_values):
         # ao = AppObjects()
