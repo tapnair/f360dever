@@ -57,25 +57,29 @@ def make_ui_message():
 
     tab: adsk.core.ToolbarTab
     for tab in active_workspace.toolbarTabs:
-        if tab.isVisible:
+        if tab is not None:
 
-            msg += "<div>"
-            msg += "<h4>{} - Toolbar Tab</h4>".format(tab.name)
-            msg += "Name: {}<br>".format(tab.name)
-            msg += "ID: {}<br>".format(tab.id)
-            msg += "Index: {}<br>".format(tab.index)
-            msg += "Tool Bar Panels:"
-            msg += "</div>"
+            if tab.isVisible:
 
-            msg += "<UL>"
-            toolbar_panel: adsk.core.ToolbarPanel
-            for toolbar_panel in tab.toolbarPanels:
-                # if toolbar_panel.isVisible:
-                msg += "<LI><b>Panel ID: {}</b><UL>".format(toolbar_panel.id)
-                toolbar_control: adsk.core.ToolbarControl
-                for toolbar_control in toolbar_panel.controls:
-                    msg += "<LI>{}</LI>".format(toolbar_control.id)
-                msg += "</UL></LI>"
+                msg += "<div>"
+                msg += "<h4>{} - Toolbar Tab</h4>".format(tab.name)
+                msg += "Name: {}<br>".format(tab.name)
+                msg += "ID: {}<br>".format(tab.id)
+                msg += "Index: {}<br>".format(tab.index)
+                msg += "Tool Bar Panels:"
+                msg += "</div>"
+
+                msg += "<UL>"
+                toolbar_panel: adsk.core.ToolbarPanel
+                for toolbar_panel in tab.toolbarPanels:
+                    if toolbar_panel is not None:
+                        if toolbar_panel.isVisible:
+                            msg += "<LI><b>Panel ID: {}</b><UL>".format(toolbar_panel.id)
+                            toolbar_control: adsk.core.ToolbarControl
+                            for toolbar_control in toolbar_panel.controls:
+                                if toolbar_control is not None:
+                                    msg += "<LI>{}</LI>".format(toolbar_control.id)
+                            msg += "</UL></LI>"
             msg += "</UL>"
 
     msg += "</div>"
