@@ -24,7 +24,7 @@ try:
 
     # ************Samples**************
     # Basic Fusion 360 Command Base samples
-    from .commands.SampleCommand1 import SampleCommand1
+    from .commands.DataCommands import DataInfoCommand
     from .commands.SampleCommand2 import SampleCommand2
 
     # Palette Command Base samples
@@ -186,21 +186,21 @@ try:
 
 
     #
-    #
-    # my_addin.add_command(
-    #     'Sample Command 1',
-    #     SampleCommand1,
-    #     {
-    #         'cmd_description': 'Hello World!',
-    #         'cmd_id': 'sample_cmd_1',
-    #         'workspace': 'FusionSolidEnvironment',
-    #         'toolbar_panel_id': 'Commands',
-    #         'cmd_resources': 'command_icons',
-    #         'command_visible': True,
-    #         'command_promoted': False,
-    #     }
-    # )
-    #
+
+    my_addin.add_command(
+        'Get Data Info',
+        DataInfoCommand,
+        {
+            'cmd_description': 'Display Data Info for Current File',
+            'cmd_id': 'data_cmd_1',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Data',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
+
     # # General command showing inputs and user interaction
     # my_addin.add_command(
     #     'Sample Command 2',
