@@ -185,19 +185,19 @@ try:
         }
     )
 
-    my_addin.add_command(
-        'Get Data Info',
-        DataInfoCommand,
-        {
-            'cmd_description': 'Display Data Info for Current File',
-            'cmd_id': 'data_cmd_1',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'command_icons',
-            'command_visible': True,
-            'command_promoted': True,
-        }
-    )
+    # my_addin.add_command(
+    #     'Get Data Info',
+    #     DataInfoCommand,
+    #     {
+    #         'cmd_description': 'Display Data Info for Current File',
+    #         'cmd_id': 'data_cmd_1',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'command_icons',
+    #         'command_visible': True,
+    #         'command_promoted': True,
+    #     }
+    # )
 
     # # General command showing inputs and user interaction
     # my_addin.add_command(
@@ -238,89 +238,89 @@ try:
             'palette_height': 600,
         }
     )
-
-    # Create an html palette to as an alternative UI
-    my_addin.add_command(
-        'Get Authorization',
-        AuthPaletteShow,
-        {
-            'cmd_description': 'Get Authorization for use with Forge',
-            'cmd_id': 'auth_cmd_id',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'forge_icons',
-            'command_visible': True,
-            'command_promoted': True,
-            'palette_id': 'f360dever_auth_palette_id',
-            'palette_name': 'f360dever Authorization Demo',
-            'palette_is_local': False,
-            'palette_html_file_url': config.auth_url,
-            # 'palette_html_file_url': 'commands/palette_html/localAuth.html',
-            'palette_use_new_browser': True,
-            'palette_is_visible': True,
-            'palette_show_close_button': True,
-            'palette_is_resizable': True,
-            'palette_width': 500,
-            'palette_height': 600,
-        }
-    )
+    #
+    # # Create an html palette to as an alternative UI
+    # my_addin.add_command(
+    #     'Get Authorization',
+    #     AuthPaletteShow,
+    #     {
+    #         'cmd_description': 'Get Authorization for use with Forge',
+    #         'cmd_id': 'auth_cmd_id',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'forge_icons',
+    #         'command_visible': True,
+    #         'command_promoted': True,
+    #         'palette_id': 'f360dever_auth_palette_id',
+    #         'palette_name': 'f360dever Authorization Demo',
+    #         'palette_is_local': False,
+    #         'palette_html_file_url': config.auth_url,
+    #         # 'palette_html_file_url': 'commands/palette_html/localAuth.html',
+    #         'palette_use_new_browser': True,
+    #         'palette_is_visible': True,
+    #         'palette_show_close_button': True,
+    #         'palette_is_resizable': True,
+    #         'palette_width': 500,
+    #         'palette_height': 600,
+    #     }
+    # )
 
     # Get Fusion 360 Projects from Forge API
-    my_addin.add_command(
-        'Forge Projects',
-        ForgeCommands.ForgeProjectsFromHubCommand,
-        {
-            'cmd_description': 'Get Fusion 360 Projects from Forge API',
-            'cmd_id': 'ForgeProjectsCommand',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'forge_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # my_addin.add_command(
+    #     'Forge Projects',
+    #     ForgeCommands.ForgeProjectsFromHubCommand,
+    #     {
+    #         'cmd_description': 'Get Fusion 360 Projects from Forge API',
+    #         'cmd_id': 'ForgeProjectsCommand',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'forge_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
-    my_addin.add_command(
-        'Forge Folder Contents',
-        ForgeCommands.ForgeFolderContentsCommand,
-        {
-            'cmd_description': "Get Folder Contents of active project's root folder from Forge API",
-            'cmd_id': 'ForgeFoldersCommand',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'forge_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # my_addin.add_command(
+    #     'Forge Folder Contents',
+    #     ForgeCommands.ForgeFolderContentsCommand,
+    #     {
+    #         'cmd_description': "Get Folder Contents of active project's root folder from Forge API",
+    #         'cmd_id': 'ForgeFoldersCommand',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'forge_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
-    my_addin.add_command(
-        'Forge Item Details',
-        ForgeCommands.ForgeItemDetailsCommand,
-        {
-            'cmd_description': "Get Forge Item Details for active document",
-            'cmd_id': 'ForgeItemCommand',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'forge_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # my_addin.add_command(
+    #     'Forge Item Details',
+    #     ForgeCommands.ForgeItemDetailsCommand,
+    #     {
+    #         'cmd_description': "Get Forge Item Details for active document",
+    #         'cmd_id': 'ForgeItemCommand',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'forge_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
-    my_addin.add_command(
-        'Forge Version Details',
-        ForgeCommands.ForgeVersionDetailsCommand,
-        {
-            'cmd_description': "Get Forge Version Details for active document",
-            'cmd_id': 'ForgeVersionCommand',
-            'workspace': 'FusionSolidEnvironment',
-            'toolbar_panel_id': 'Data',
-            'cmd_resources': 'forge_icons',
-            'command_visible': True,
-            'command_promoted': False,
-        }
-    )
+    # my_addin.add_command(
+    #     'Forge Version Details',
+    #     ForgeCommands.ForgeVersionDetailsCommand,
+    #     {
+    #         'cmd_description': "Get Forge Version Details for active document",
+    #         'cmd_id': 'ForgeVersionCommand',
+    #         'workspace': 'FusionSolidEnvironment',
+    #         'toolbar_panel_id': 'Data',
+    #         'cmd_resources': 'forge_icons',
+    #         'command_visible': True,
+    #         'command_promoted': False,
+    #     }
+    # )
 
     # # Send data from Fusion 360 to the palette
     # my_addin.add_command(

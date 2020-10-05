@@ -1,8 +1,9 @@
 import adsk.core
 import adsk.fusion
-import apper
 import json
-import config
+
+from ..apper import apper
+from .. import config
 
 
 def palette_push(command, action_data):
