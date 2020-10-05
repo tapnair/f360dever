@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+Trying to do something
+<br>
+
+<button type='button' onclick='sendInfoToFusion()'>Click to send info to Fusion</button>
+
+</body>
+
+<script>
+    function sendInfoToFusion() {
+
+        const access_token = "eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJzY29wZSI6WyJkYXRhOnJlYWQiLCJkYXRhOndyaXRlIl0sImNsaWVudF9pZCI6IlU3T3FqNkNNMjlGem1lQUk1V214RllvZlBTNEVzZUdtIiwiZ3JhbnRfaWQiOiJ2c2NEeXA5YmdUc1F0a2FlS0xXd1BwUzV6Qnpwbzh1SCIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tL2F1ZC9qd3RleHA2MCIsImp0aSI6IlZYMXZ6dldITmJ0SmFZWFlva1BWSkVmUnM2OUNZaDRYSnFaOHlzZ29sdGJjd0tDOHlBN05Ec2JiaFZkeXhXS28iLCJ1c2VyaWQiOiJYTjM5TDZXQ0taM1giLCJleHAiOjE1OTkyMzI2NjJ9.4zdAsAZIhxwIRTvb1YfD3PmgBfB9_Te-GBYvwBmsDcU";
+
+        const args = {
+            access_token: access_token
+        };
+        console.log("Here in the function")
+        adsk.fusionSendData('send', JSON.stringify(args));
+        // neutronJavaScriptObject.executeQuery('send', JSON.stringify(args));
+    }
+</script>
+
+
+</html>
