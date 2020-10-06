@@ -2,11 +2,7 @@ import adsk.core
 import adsk.fusion
 import adsk.cam
 
-# Import the entire apper package
-import apper
-
-# Alternatively you can import a specific function or class
-from apper import AppObjects
+from ..apper import apper
 
 
 # Class for a Fusion 360 Command
@@ -54,7 +50,7 @@ class SampleCommand2(apper.Fusion360CommandBase):
         the_selection_type = the_first_selection.objectType
 
         # Get a reference to all relevant application objects in a dictionary
-        ao = AppObjects()
+        ao = apper.AppObjects()
 
         converted_value = ao.units_manager.formatInternalValue(the_value, 'in', True)
 
@@ -72,7 +68,7 @@ class SampleCommand2(apper.Fusion360CommandBase):
 
     def on_create(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs):
 
-        ao = AppObjects()
+        ao = apper.AppObjects()
 
         # Create a default value using a string
         default_value = adsk.core.ValueInput.createByString('1.0 in')

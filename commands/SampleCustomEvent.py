@@ -4,7 +4,7 @@ import adsk.fusion
 import json
 import time
 
-import apper
+from ..apper import apper
 
 
 class SampleCustomEvent1(apper.Fusion360CustomThread):

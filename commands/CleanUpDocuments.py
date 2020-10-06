@@ -3,8 +3,8 @@ import adsk.fusion
 import adsk
 import traceback
 
-import apper
-import config
+from ..apper import apper
+from .. import config
 from . import NewNumbers
 
 

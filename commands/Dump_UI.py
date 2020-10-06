@@ -1,7 +1,8 @@
 import adsk.core
 import adsk.fusion
-import apper
 import traceback
+
+from ..apper import apper
 
 
 class DumpUICommand(apper.Fusion360CommandBase):

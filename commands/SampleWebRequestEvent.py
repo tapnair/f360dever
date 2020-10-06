@@ -1,5 +1,4 @@
-import apper
-from apper import AppObjects
+from ..apper import apper
 
 
 class SampleWebRequestOpened(apper.Fusion360WebRequestEvent):
@@ -11,7 +10,7 @@ class SampleWebRequestOpened(apper.Fusion360WebRequestEvent):
         self.conn = Client(address)
 
     def web_request_event_received(self, event_args, file, fusion_id, occurrence_or_document, private_info, properties):
-        ao = AppObjects()
+        ao = apper.AppObjects()
 
         # **********Do your stuff here**************
         ao.ui.messageBox("You just Opened: {} ".format(file))

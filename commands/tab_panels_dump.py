@@ -1,5 +1,7 @@
-import adsk.core, adsk.fusion, traceback
-import apper
+import adsk.core
+import adsk.fusion
+import traceback
+from ..apper import apper
 
 
 class DumpWorkspacePanels(apper.Fusion360CommandBase):

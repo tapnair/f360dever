@@ -1,3 +1,6 @@
+from os.path import dirname, abspath
+app_path = dirname(abspath(__file__))
+
 app_name = 'f360dever'
 company_name = "Autodesk"
 part_number_random_seed_min = 1000000

@@ -5,11 +5,8 @@ import adsk.fusion
 import traceback
 from random import randint
 
-import apper
-from apper import AppObjects
-import config
-
-reload(config)
+from ..apper import apper
+from .. import config
 
 new_number = randint(config.part_number_random_seed_min, config.part_number_random_seed_max)
 
@@ -45,7 +42,7 @@ def make_numbers() -> bool:
 
     """
     changed = False
-    ao = AppObjects()
+    ao = apper.AppObjects()
 
     for i, component in enumerate(ao.design.allComponents):
 

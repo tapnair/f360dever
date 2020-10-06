@@ -4,8 +4,8 @@ import adsk.cam
 
 import json
 
-import apper
-import config
+from ..apper import apper
+from .. import config
 
 
 # Class for a Fusion 360 Palette Command

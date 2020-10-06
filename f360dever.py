@@ -1,14 +1,10 @@
 import adsk.core
 import traceback
 
-from.startup import setup_app, cleanup_app, get_app_path
-setup_app(__file__)
-
-# TODO add command stream with parent control info (panel, tab, workspace, etc)
 
 try:
-    import config
-    import apper
+    from . import config
+    from .apper import apper
 
     # For UI Command and Selection Stream
     from .commands.CommandStreamEvents import CommandStreamEvent, SelectionStreamEvent
@@ -41,7 +37,7 @@ try:
 
     # Create our addin definition object
     my_addin = apper.FusionApp(config.app_name, config.company_name, False)
-    my_addin.root_path = get_app_path(__file__)
+    my_addin.root_path = config.app_path
 
     # Creates a basic Hello World message box on execute
     my_addin.add_command(

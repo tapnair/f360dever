@@ -6,16 +6,7 @@ import adsk.core
 import adsk.fusion
 import adsk.cam
 
-# Import the entire apper package
-import apper
-
-# Alternatively you can import a specific function or class
-from apper import AppObjects
-
-reload(apper)
-
-# ao = AppObjects()
-# ao.ui.messageBox(apper.__file__)
+from ..apper import apper
 
 
 def get_name_type(selection):
@@ -72,7 +63,7 @@ class AttributeSelectionCommand(apper.Fusion360CommandBase):
 
     def on_input_changed(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, changed_input,
                          input_values):
-        ao = AppObjects()
+        ao = apper.AppObjects()
         # Get the values from the user input
         filter_by_group = input_values['bool_input_id']
         filter_group_name = input_values['string_input_id']
@@ -105,7 +96,7 @@ class AttributeSelectionCommand(apper.Fusion360CommandBase):
 
 def get_all_attributes(attribute_group, attribute_name):
     # Get a reference to all relevant application objects in a dictionary
-    ao = AppObjects()
+    ao = apper.AppObjects()
 
     msg_list = []
 
@@ -167,7 +158,7 @@ class AllAttributesCommand(apper.Fusion360CommandBase):
         pass
 
     def on_create(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs):
-        ao = AppObjects()
+        ao = apper.AppObjects()
 
         # Other Input types
         inputs.addStringValueInput('attribute_group_id', 'Attribute Group', "")
@@ -197,7 +188,7 @@ class AddAttributeCommand(apper.Fusion360CommandBase):
             text_box_input.formattedText = msg
 
     def on_execute(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, args, input_values):
-        ao = AppObjects()
+        ao = apper.AppObjects()
         all_selections = input_values['selection_input_id']
         selection = all_selections[0]
 

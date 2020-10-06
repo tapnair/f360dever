@@ -2,7 +2,7 @@ import adsk.core
 import adsk.fusion
 import traceback
 
-import apper
+from ..apper import apper
 
 
 class SampleWorkspaceEvent1(apper.Fusion360WorkspaceEvent):

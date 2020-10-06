@@ -8,13 +8,7 @@ import adsk.fusion
 import adsk.cam
 import traceback
 
-# Import the entire apper package
-import apper
-
-# Alternatively you can import a specific function or class
-from apper import AppObjects
-
-reload(apper)
+from ..apper import apper
 
 
 def display_joint_info(joint: adsk.fusion.Joint) -> list:
