@@ -8,11 +8,12 @@ try:
 
     # For UI Command and Selection Stream
     from .commands.CommandStreamEvents import CommandStreamEvent, SelectionStreamEvent
-
-    # f360 Dever Commands
     from .commands.CommandStreamPaletteCommand import CommandStreamPaletteShow
-    from .commands.AuthCommand import AuthPaletteShow
-    from .commands import ForgeCommands
+
+    # from .commands.AuthCommand import AuthPaletteShow
+    # from .commands import ForgeCommands
+    # from .commands.DataCommands import DataInfoCommand
+
     from .commands import AttributeCommands
     from .commands import AssemblyContextCommands
     from .commands import NewNumbers
@@ -22,7 +23,6 @@ try:
 
     # ************Samples**************
     # Basic Fusion 360 Command Base samples
-    from .commands.DataCommands import DataInfoCommand
     from .commands.SampleCommand2 import SampleCommand2
 
     # Palette Command Base samples
