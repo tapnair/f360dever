@@ -1,3 +1,5 @@
+import os
+
 import adsk.core
 import traceback
 
@@ -225,7 +227,7 @@ try:
             'palette_id': config.command_stream_palette_id,
             'palette_name': 'f360dever Command Stream',
             'palette_is_local': True,
-            'palette_html_file_url': 'commands/palette_html/command_stream.html',
+            'palette_html_file_url': os.path.join('commands', 'palette_html', 'command_stream.html'),
             'palette_use_new_browser': True,
             'palette_is_visible': True,
             'palette_show_close_button': True,
