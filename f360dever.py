@@ -28,7 +28,7 @@ try:
     from .commands.SampleCommand2 import SampleCommand2
 
     # Palette Command Base samples
-    from .commands.CommandStreamPaletteCommand import SamplePaletteSendCommand
+    from .commands.SamplePaletteCommand import SamplePaletteSendCommand, SamplePaletteShowCommand
 
     # Various Application event samples
     from .commands.SampleCustomEvent import SampleCustomEvent1
@@ -214,7 +214,7 @@ try:
 
     # Create an html palette to as an alternative UI
     my_addin.add_command(
-        'Show Commands',
+        'Show Command Stream',
         CommandStreamPaletteShow,
         {
             'cmd_description': 'Show details about commands being executed in the UI',
@@ -320,21 +320,49 @@ try:
     #     }
     # )
 
-    # # Send data from Fusion 360 to the palette
-    # my_addin.add_command(
-    #     'Send Info to Palette',
-    #     SamplePaletteSendCommand,
-    #     {
-    #         'cmd_description': 'Send data from a regular Fusion 360 command to a palette',
-    #         'cmd_id': 'sample_palette_send',
-    #         'workspace': 'FusionSolidEnvironment',
-    #         'toolbar_panel_id': 'Palette',
-    #         'cmd_resources': 'palette_icons',
-    #         'command_visible': True,
-    #         'command_promoted': False,
-    #         'palette_id': 'sample_palette',
-    #     }
-    # )
+    # Send data from Fusion 360 to the palette
+    my_addin.add_command(
+        'Send Info to Palette',
+        SamplePaletteSendCommand,
+        {
+            'cmd_description': 'Send data from a regular Fusion 360 command to a palette',
+            'cmd_id': 'sample_palette_send',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Palette',
+            'cmd_resources': 'palette_icons',
+            'command_visible': True,
+            'command_promoted': False,
+            'palette_id': 'sample_palette',
+        }
+    )
+
+    # Create an html palette to as an alternative UI
+    my_addin.add_command(
+        'Sample Palette',
+        CommandStreamPaletteShow,
+        {
+            'cmd_description': 'Show details about commands being executed in the UI',
+            'cmd_id': 'sample_palette_id',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Palette',
+            'cmd_resources': 'palette_icons',
+            'command_visible': True,
+            'command_promoted': True,
+            'palette_id': config.sample_palette_id,
+            'palette_name': 'Sample Palette',
+            'palette_is_local': True,
+            'palette_html_file_url': os.path.join('commands', 'palette_html', 'f360dever.html'),
+            'palette_use_new_browser': True,
+            'palette_force_url_reload': True,
+            'palette_force_url_home': False,
+            'palette_enable_debug': True,
+            'palette_is_visible': True,
+            'palette_show_close_button': True,
+            'palette_is_resizable': True,
+            'palette_width': 500,
+            'palette_height': 600,
+        }
+    )
 
     app = adsk.core.Application.cast(adsk.core.Application.get())
     ui = app.userInterface
