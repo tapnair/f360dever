@@ -397,4 +397,3 @@ def run(context):
 
 def stop(context):
     my_addin.stop_app()
-    cleanup_app(__file__)
