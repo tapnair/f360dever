@@ -12,10 +12,10 @@ class CommandStreamPaletteShow(apper.PaletteCommandBase):
 
     # Run when user executes command in UI, useful for handling extra tasks on palette like docking
     def on_palette_execute(self, palette: adsk.core.Palette):
-
+        pass
         # Dock the palette to the right side of Fusion window.
-        if palette.dockingState == adsk.core.PaletteDockingStates.PaletteDockStateFloating:
-            palette.dockingState = adsk.core.PaletteDockingStates.PaletteDockStateRight
+        # if palette.dockingState == adsk.core.PaletteDockingStates.PaletteDockStateFloating:
+        #     palette.dockingState = adsk.core.PaletteDockingStates.PaletteDockStateRight
 
     # Run when ever a fusion event is fired from the corresponding web page
     def on_html_event(self, html_args: adsk.core.HTMLEventArgs):

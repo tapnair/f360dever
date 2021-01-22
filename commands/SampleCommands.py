@@ -3,6 +3,22 @@ import adsk.fusion
 import adsk.cam
 
 from ..apper import apper
+from .. import config
+
+
+class MessageBoxCommand(apper.Fusion360CommandBase):
+    def on_execute(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, args, input_values):
+        ao = apper.AppObjects()
+
+        message_box_text = '<h3>You are about to install software from:<br>' \
+                           '<a href=//xometry.com>Xometry Inc.</a></h3><br>' \
+                           'To continue, accept the Software License Agreement:<br><br>' \
+                           '<a href=//apps.autodesk.com/en/eula>View Store Terms and Conditions</a>'
+
+        message_box_title = 'Install Xometry Addin'
+        message_box_button = adsk.core.MessageBoxButtonTypes.OKCancelButtonType
+        message_box_icon = adsk.core.MessageBoxIconTypes.InformationIconType
+        ao.ui.messageBox(message_box_text, message_box_title, message_box_button, message_box_icon)
 
 
 # Class for a Fusion 360 Command

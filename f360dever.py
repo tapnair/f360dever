@@ -25,7 +25,7 @@ try:
 
     # ************Samples**************
     # Basic Fusion 360 Command Base samples
-    from .commands.SampleCommand2 import SampleCommand2
+    from .commands.SampleCommands import SampleCommand2, MessageBoxCommand
 
     # Palette Command Base samples
     from .commands.SamplePaletteCommand import SamplePaletteSendCommand, SamplePaletteShowCommand
@@ -197,20 +197,35 @@ try:
     #     }
     # )
 
-    # # General command showing inputs and user interaction
-    # my_addin.add_command(
-    #     'Sample Command 2',
-    #     SampleCommand2,
-    #     {
-    #         'cmd_description': 'A simple example of a Fusion 360 Command with various inputs',
-    #         'cmd_id': 'sample_cmd_2',
-    #         'workspace': 'FusionSolidEnvironment',
-    #         'toolbar_panel_id': 'Commands',
-    #         'cmd_resources': 'command_icons',
-    #         'command_visible': True,
-    #         'command_promoted': False,
-    #     }
-    # )
+    # General command showing inputs and user interaction
+    my_addin.add_command(
+        'Command Input Demo',
+        SampleCommand2,
+        {
+            'cmd_description': 'A simple example of a Fusion 360 Command with various inputs',
+            'cmd_id': 'sample_cmd_2',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Generic',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': False,
+        }
+    )
+
+    # General command showing a standard message box
+    my_addin.add_command(
+        'Message Box',
+        MessageBoxCommand,
+        {
+            'cmd_description': 'Simple Message Box Command',
+            'cmd_id': 'msg_box_cmd',
+            'workspace': 'FusionSolidEnvironment',
+            'toolbar_panel_id': 'Generic',
+            'cmd_resources': 'command_icons',
+            'command_visible': True,
+            'command_promoted': True,
+        }
+    )
 
     # Create an html palette to as an alternative UI
     my_addin.add_command(
