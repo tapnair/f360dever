@@ -67,21 +67,22 @@ def make_ui_message():
                 msg += "Name: {}<br>".format(tab.name)
                 msg += "ID: {}<br>".format(tab.id)
                 msg += "Index: {}<br>".format(tab.index)
-                msg += "Tool Bar Panels:"
-                msg += "</div>"
+                # msg += "Tool Bar Panels:"
+                # msg += "</div>"
 
-                msg += "<UL>"
-                toolbar_panel: adsk.core.ToolbarPanel
-                for toolbar_panel in tab.toolbarPanels:
-                    if toolbar_panel is not None:
-                        if toolbar_panel.isVisible:
-                            msg += "<LI><b>Panel ID: {}</b><UL>".format(toolbar_panel.id)
-                            toolbar_control: adsk.core.ToolbarControl
-                            for toolbar_control in toolbar_panel.controls:
-                                if toolbar_control is not None:
-                                    msg += "<LI>{}</LI>".format(toolbar_control.id)
-                            msg += "</UL></LI>"
-            msg += "</UL>"
+                # msg += "<UL>"
+                # toolbar_panel: adsk.core.ToolbarPanel
+                # for toolbar_panel in tab.toolbarPanels:
+                #     if toolbar_panel is not None:
+                #         if toolbar_panel.isVisible:
+                #             # msg += "<LI><b>Panel ID: {}</b><UL>".format(toolbar_panel.id)
+                #             toolbar_control: adsk.core.ToolbarControl
+                #             for toolbar_control in toolbar_panel.controls:
+                #                 if toolbar_control is not None:
+                #                     # msg += "<LI>{}</LI>".format(toolbar_control.id)
+                #                     pass
+                #             msg += "</UL></LI>"
+            # msg += "</UL>"
 
     msg += "</div>"
     return msg
